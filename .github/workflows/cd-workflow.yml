@@ -51,18 +51,15 @@ jobs:
     name: Docker Build, Tag, Push
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Download built artifact
-        uses: actions/download-artifact@main
-        with:
-          name: webpack artifacts
-          path: public
-      - name: Build container image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-          registry: docker.pkg.github.com
-          repository: chariondm/github-actions-for-packages/tic-tac-toe
-          tag_with_sha: true
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Download built artifact
+      uses: actions/download-artifact@master
+      with:
+        name: webpack artifacts
+        path: public
+#     - name: Build, Tag, Push
+#       uses: mattdavis0351/actions/docker-gpr@v1
+#       with:
+#         repo-token: ${{ secrets.GITHUB_TOKEN }}
+#         image-name: tic-tac-toe-for-packages # this image-name is changed for the demo
